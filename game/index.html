@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Tides — Spot the Difference</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23ffcf5c'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23101c2e'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="brand">
+      <span class="brand-mark">◉</span>
+      <span class="brand-name">Twin Tides</span>
+      <span class="brand-sub">spot the difference</span>
+    </div>
+    <div class="hud-center">
+      <div class="level-chip"><span id="level-name">Harbor at Dusk</span><span id="level-pos">Level 1 / 5</span></div>
+      <div class="found-chip"><span id="found-count">0</span><span class="found-of">/ 7 found</span></div>
+      <div class="timer-wrap">
+        <div class="timer-bar"><div id="timer-fill"></div></div>
+        <span id="timer-text">1:30</span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <span class="score-chip">Score <b id="score">0</b></span>
+      <button id="btn-hint" class="hud-btn" title="Hint (H)">💡 Hint <b id="hints-left">3</b></button>
+      <button id="btn-sound" class="hud-btn" title="Sound (M)">🔊</button>
+      <button id="btn-menu" class="hud-btn" title="Menu (Esc)">☰</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <section class="panel" id="panel-a">
+      <div class="panel-tag">Picture A</div>
+      <canvas id="canvas-a" width="1200" height="880"></canvas>
+    </section>
+    <div class="divider"><span>VS</span></div>
+    <section class="panel" id="panel-b">
+      <div class="panel-tag">Picture B</div>
+      <canvas id="canvas-b" width="1200" height="880"></canvas>
+    </section>
+  </main>
+
+  <footer id="statusbar">
+    <span id="status-text">Find all 7 differences before the clock runs out.</span>
+    <span id="combo-text"></span>
+    <span class="keys">Click a difference &nbsp;·&nbsp; H hint &nbsp;·&nbsp; R restart &nbsp;·&nbsp; M sound</span>
+  </footer>
+
+  <div class="overlay" id="screen-menu">
+    <div class="card">
+      <h1>◉ Twin Tides</h1>
+      <p class="tagline">Two pictures. Seven secrets. One sharp pair of eyes.</p>
+      <div class="menu-art" aria-hidden="true">
+        <span>⛵</span><span>🌲</span><span>🏮</span><span>⛄</span><span>🐠</span>
+      </div>
+      <button class="big-btn" id="btn-play">▶&nbsp; Play</button>
+      <button class="big-btn ghost" id="btn-levels">Choose a scene</button>
+      <button class="big-btn ghost" id="btn-how">How to play</button>
+      <p class="best-line">Best score: <b id="best-score">0</b></p>
+      <div class="howto" id="howto" hidden>
+        <p>🔍 <b>Click</b> a difference on either picture to circle it.</p>
+        <p>⏱️ Find all <b>7</b> before the timer ends. A wrong click costs <b>3 seconds</b>.</p>
+        <p>💡 Stuck? A hint rings a hidden difference — 3 per level, −50 points.</p>
+        <p>⭐ Finish fast for a time bonus and up to 3 stars. Five scenes, five tides.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="screen-levels" hidden>
+    <div class="card wide">
+      <h2>Choose a scene</h2>
+      <div id="level-grid"></div>
+      <button class="big-btn ghost" id="btn-levels-back">← Back</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="screen-clear" hidden>
+    <div class="card">
+      <h2 id="clear-title">Level clear!</h2>
+      <div class="stars" id="clear-stars">★★★</div>
+      <p class="clear-line">Time bonus <b id="clear-bonus">+0</b> &nbsp;·&nbsp; Level score <b id="clear-score">0</b></p>
+      <p class="clear-line">Total score <b id="clear-total">0</b></p>
+      <button class="big-btn" id="btn-next">Next scene →</button>
+      <button class="big-btn ghost" id="btn-replay">Replay scene</button>
+      <button class="big-btn ghost" id="btn-clear-menu">Menu</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="screen-over" hidden>
+    <div class="card">
+      <h2>Out of time!</h2>
+      <p class="tagline" id="over-line">You found 3 of 7 differences.</p>
+      <button class="big-btn" id="btn-retry">Try again</button>
+      <button class="big-btn ghost" id="btn-over-menu">Menu</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="screen-win" hidden>
+    <div class="card">
+      <h2>🏆 You found them all!</h2>
+      <p class="tagline">All five tides, all thirty-five secrets.</p>
+      <p class="clear-line">Final score <b id="win-score">0</b></p>
+      <p class="clear-line">Best score <b id="win-best">0</b></p>
+      <button class="big-btn" id="btn-again">Play again</button>
+      <button class="big-btn ghost" id="btn-win-menu">Menu</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="boot.js"></script>
+</body>
+</html>
